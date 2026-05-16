@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 
 int reserva(void);
 int cancela(void);
@@ -84,6 +84,28 @@ int reserva(void)
 int cancela(void)
 {
     printf("Funcao cancela chamada.\n");
+    for ( int i = 1; i <= 10; i++)
+    {
+      if (salas[i].numero==0)//caso a primeira acao seja cancelar, via dizer que todas estao livres.
+      {
+          printf("todas as salas estao livres.\n");
+          return 0;
+      }if (strcmp(salas[i].disponivel,"nao") == 0)
+        {
+            printf("Sala %d esta alugada.\n ", salas[i].numero);
+        }
+    }
+      int f;
+      printf("Qual sala gostaria de cancelar a reserva?\n");
+      scanf("%d", &f);
+     if (strcmp(salas[f].disponivel,"pode") == 0)
+      {
+          printf("Erro! sala %d ja livre \n", salas[f].numero);
+      }else
+        {
+            printf("Reserva da sala %d cancelada com sucesso.\n", salas[f].numero);
+            strcpy(salas[f].disponivel,"pode");
+        }
     return 0;
 }
 
